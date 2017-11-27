@@ -6,8 +6,31 @@ public class AreadosTest : ModuleRules
 {
 	public AreadosTest(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        //add some compiler modifers
+        MinFilesUsingPrecompiledHeaderOverride = 1;
+        bFasterWithoutUnity = true;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
-	}
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        //PCHUsage = PCHUsageMode.UseSharedPCHs;
+        bEnforceIWYU = false;
+
+        PublicDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "Core",
+                "CoreUObject",
+                "Engine",
+                "InputCore",
+                "HeadMountedDisplay"
+            });
+
+        // Add Http Modules for AHttpLayer
+        PrivateDependencyModuleNames.AddRange(
+            new string[]
+            {
+                    "Http",
+                    "Json",
+                    "JsonUtilities"
+            });
+    }
 }
